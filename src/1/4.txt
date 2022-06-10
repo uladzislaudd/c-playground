@@ -1,0 +1,5 @@
+ptrace(PTRACE_PEEKDATA, pid, addr, void *data);
+
+PTRACE_PEEKDATA - enum __ptrace_request;
+pid - pid of the process;
+addr - "line" address, can be obtained by 'objdump -d'

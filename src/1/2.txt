@@ -1,0 +1,3 @@
+To avoid possible dependency hell.
+When you are using an older version of the library.
+When the target OS doesn't have required library and doesn't have a package manager to get it.

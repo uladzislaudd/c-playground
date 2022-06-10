@@ -1,0 +1,15 @@
+Если пользовательский процесс начал операцию ввода-вывода с устройством, и
+остановился, ожидая окончания операции в устройстве, то операция в устройстве
+закончится во время работы какого-то другого процесса в системе. Аппаратное
+прерывание о завершении операции будет обработано операционной системой. Так
+как на обработку прерывания требуется некоторое время, то текущий процесс в
+однопроцессорной системе будет приостановлен. Таким образом, любой процесс в
+системе непредсказуемо влияет на производительность других процессов
+независимо от их приоритетов.
+
+If user process started IO operation with device, and then stopped, waiting for
+the end of the operation on the device, operation on device will ends during
+other process execution. Hardware interrupt about the end of the operation will
+be handled by OS. Because interrupt handling take some time, current process in
+one-kernel system will be stopped. So, any process in system affects other
+processes perfomance independly of priority.
