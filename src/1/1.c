@@ -50,11 +50,25 @@ STATUS insert_next_to_list(list_t *item, int data) {
 }
 
 /* Removes an item following the one specificed as the argument. */
-void remove_next_from_list(list_t *item) {
-    if (item->next) {
-        free(item->next);
-        item->next = item->next->next;
-    }
+STATUS remove_next_from_list(list_t *item) {
+	struct list_s *new_next = NULL, *to_delete = NULL;
+
+	if (item == NULL) {
+		return ERR_ARGS_INVALID;
+	}
+
+	to_delete = item->next;
+	if (to_delete != NULL) {
+		new_next = to_delete->next;
+	}
+
+	item->next = new_next;
+
+	if (to_delete != NULL) {
+		free(to_delete);
+	}
+
+	return ERR_SUCCESS;
 }
 
 /* Returns item data as text. */
