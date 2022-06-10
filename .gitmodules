@@ -1,0 +1,6 @@
+[submodule "src/1/3.c"]
+	path = src/1/3.c
+	url = git@github.com:uladzislaudd/c-ls.git
+[submodule "src/1/3.cpp"]
+	path = src/1/3.cpp
+	url = git@github.com:uladzislaudd/cpp-ls.git
