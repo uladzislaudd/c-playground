@@ -1,5 +1,14 @@
 #include <stdlib.h>
 
+typedef int STATUS;
+
+enum {
+	ERR_SUCCESS = 0,
+	ERR_FAILURE,
+	ERR_ARGS_INVALID,
+	ERR_NO_MEMORY,
+};
+
 typedef struct list_s
 {
     struct list_s *next; /* NULL for the last item in a list */
@@ -21,9 +30,23 @@ size_t count_list_items(const list_t *head)
 }
 
 /* Inserts a new list item after the one specified as the argument. */
-void insert_next_to_list(list_t *item, int data) {
-	(item->next = malloc(sizeof(list_t)))->next = item->next;
-	item->next->data = data;
+STATUS insert_next_to_list(list_t *item, int data) {
+	struct list_s *new = NULL;
+
+	if (item == NULL) {
+		return ERR_ARGS_INVALID;
+	}
+
+	new = malloc(sizeof(list_t));
+	if (new == NULL) {
+		return ERR_NO_MEMORY;
+	}
+
+	new->next = item->next;
+	new->data = data;
+	item->next = new;
+
+	return ERR_SUCCESS;
 }
 
 /* Removes an item following the one specificed as the argument. */
