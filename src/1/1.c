@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 typedef struct list_s
 {
     struct list_s *next; /* NULL for the last item in a list */
@@ -5,12 +7,17 @@ typedef struct list_s
 } list_t;
 
 /* Counts the number of items in a list. */
-int count_list_items(const list_t *head) {
-	if (head->next) {
-		return count_list_items(head->next) + 1;
-	} else {
-		return 1;
+size_t count_list_items(const list_t *head)
+{
+	size_t rv = 0;
+	const list_t *i = head;
+
+	while (i != NULL) {
+		i = i->next;
+		rv++;
 	}
+
+	return rv;	
 }
 
 /* Inserts a new list item after the one specified as the argument. */
