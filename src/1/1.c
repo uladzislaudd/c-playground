@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 
 typedef int STATUS;
@@ -72,10 +73,17 @@ STATUS remove_next_from_list(list_t *item) {
 }
 
 /* Returns item data as text. */
-char *item_data(const list_t *list)
+STATUS item_data(const list_t *list, char *buf, size_t size)
 {
-	char buf[12];
+	STATUS rv = ERR_FAILURE;
+	int rvs;
 
-	sprintf(buf, "%d", list->data);
-	return buf;
+	if (list == NULL) {
+		return ERR_ARGS_INVALID;
+	}
+
+	rvs = snprintf(buf, size, "%d", list->data);
+	return rvs > size ? ERR_NO_MEMORY
+					  : (rvs < 0 ? ERR_FAILURE
+					             : ERR_SUCCESS);
 }
